@@ -25,6 +25,10 @@ router.post('/sign-up', async (req, res) => {
         }
     } catch (err) {
         logger.logEvents("Error", err.stack);
+        if(err.code === 11000)
+        {
+            return res.status(400).send({status: false, statusCode: 400, message: "email already exists."});
+        }
         return res.status(400).send({status: false, statusCode: 400, message: err.message})
     }
 });
