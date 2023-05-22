@@ -372,3 +372,6 @@
 22-05-2023 15:49:2	Error	Error: users validation failed: last_name: Path `last_name` is required., first_name: Path `first_name` is required.
     at E:\matfly\self\hts\src\users\users.js:16:23
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+22-05-2023 16:41:24	Error	Error: E11000 duplicate key error collection: HTS.users index: email_1 dup key: { email: "aadeshkarira@gmail.com" }
+    at E:\matfly\self\hts\src\users\users.js:16:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
