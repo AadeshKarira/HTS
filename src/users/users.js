@@ -13,7 +13,6 @@ router.post('/sign-up', async (req, res) => {
             req.body.password = await bcrypt.hash(req.body.password, saltRounds);
             const get = await users.insertOne(req.body);
             if (get.err) {
-                console.log(get);
                 if(get.err.code===11000){
                     return res.status(403).send({status: false, statusCode: 403, message: "failed to create.", err: "email already exists"});
                 }
