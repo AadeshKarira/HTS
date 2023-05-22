@@ -69,7 +69,7 @@ insertOne = async (query) => {
         const create = await users(query).save();
         return create;
     }catch (err) {
-        return {err: err.message}
+        return {err: err}
     }
 }
 
@@ -78,7 +78,7 @@ findOne = async (query) => {
       const get = await users.findOne(query);
       return get
   }catch (err) {
-      return {err: err.message}
+      return {err: err}
   }
 }
 

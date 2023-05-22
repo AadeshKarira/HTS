@@ -13,7 +13,11 @@ router.post('/sign-up', async (req, res) => {
             req.body.password = await bcrypt.hash(req.body.password, saltRounds);
             const get = await users.insertOne(req.body);
             if (get.err) {
-                throw new Error(get.err);
+                console.log(get);
+                if(get.err.code===11000){
+                    return res.status(403).send({status: false, statusCode: 403, message: "failed to create.", err: "email already exists"});
+                }
+                throw new Error(get.err.message);
             }
             if (get._id) {
                 return res.status(200).send({status: true, statusCode: 200, message: "created successfully", data: {first_name: get.first_name, last_name: get.last_name, email: get.email}});
@@ -33,7 +37,7 @@ router.post('/sign-in', async (req, res) => {
     try {
             const get_user = await users.findOne({email: req.body.email});
             if (get_user.err) {
-                throw new Error(get_user.err);
+                throw new Error(get_user.err.message);
             }
             if (get_user._id) {
                 const match = await bcrypt.compare(req.body.password, get_user.password);
