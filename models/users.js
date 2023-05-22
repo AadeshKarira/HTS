@@ -87,7 +87,7 @@ updateOne = async (match, query) => {
       const set = await  users.updateOne(match, query)
       return set
   }catch (err) {
-      return err
+      return {err: err.message}
   }
 }
 
@@ -96,7 +96,7 @@ deleteOne = async (query) => {
       const set = await  users.deleteOne(query);
       return set
   }catch (err) {
-      return err
+      return {err: err.message}
   }
 }
 
